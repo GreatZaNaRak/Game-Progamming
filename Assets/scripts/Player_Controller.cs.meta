@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 7e88e331b8467fd4f9a45408f13bc15f
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - Panel1: {instanceID: 0}
+  - Panel2: {instanceID: 0}
+  - playerColor: {fileID: 2100000, guid: aed7972cdd7da9c44a24db376c0bce2d, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

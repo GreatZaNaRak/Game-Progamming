@@ -43,12 +43,12 @@ public class Map_Controller : MonoBehaviour
 
     private void onEnter()
     {
-        GetComponent<RectTransform>().sizeDelta = new Vector2(130, 130);
+        GetComponent<RectTransform>().sizeDelta = new Vector2(240, 140);
     }
 
     private void onExit()
     {
-        GetComponent<RectTransform>().sizeDelta = new Vector2(100, 100);
+        GetComponent<RectTransform>().sizeDelta = new Vector2(200, 100);
     }
 
 }

@@ -90,7 +90,7 @@ public class Player_Controller : MonoBehaviour
             if (Input.GetKey(KeyCode.E) && !Input.GetKey(KeyCode.Q)) {
                 Panel1.SetActive(true);
                 string cmd = this.getCurrentUser();
-                if (Input.GetKeyDown(KeyCode.Return)) {
+                if (Input.GetKeyDown(KeyCode.Return) || Input.GetMouseButtonDown(0)) {
                     if (cmd == "Plant") {
                         playerColor.color = Color.green;
                     } else if (cmd == "Engineer"){
@@ -113,7 +113,7 @@ public class Player_Controller : MonoBehaviour
         if (Panel2 != null) {
             if (Input.GetKey(KeyCode.Q)&& !Input.GetKey(KeyCode.E)) {
                 Panel2.SetActive(true);
-                if (Input.GetKeyDown(KeyCode.Return)) {
+                if (Input.GetKeyDown(KeyCode.Return) || Input.GetMouseButtonDown(0)) {
                     int sceneIndex = getCurrentMapIndex();
                     if (sceneIndex != -1) {
                          SceneManager.LoadScene(sceneIndex);

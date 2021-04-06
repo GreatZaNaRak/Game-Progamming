@@ -5,29 +5,39 @@ using UnityEngine.UI;
 public class Personal_Controller : MonoBehaviour
 {
 
-    public Player_Controller Player;
+    public GameStatus gs;
 
     public void enterPlant()
     {
-        Player.setCurrentUser("Plant");
         onEnter();
     }
 
     public void exitPlant()
     {
-        Player.setCurrentUser("No Data");
+        onExit();
+    }
+
+    public void clickPlant()
+    {
+        gs.setCurrentUser("Plant");
+        gs.setIsCharSelected(1);
         onExit();
     }
 
     public void enterEngineer()
     {
-        Player.setCurrentUser("Engineer");
         onEnter();
     }
 
     public void exitEngineer()
     {
-        Player.setCurrentUser("No Data");
+        onExit();
+    }
+
+    public void clickEngineer()
+    {
+        gs.setCurrentUser("Engineer");
+        gs.setIsCharSelected(1);
         onExit();
     }
 

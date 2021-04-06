@@ -15,21 +15,14 @@ public class Player_Controller : MonoBehaviour
     public GameObject Panel1;
     public GameObject Panel2;
     public Material playerColor;
+    public Properties_Controller Props;
+    public GameStatus gs;
 
     public string Current_User;
     public int mapIndex;
 
     Animator animate;
 
-    public string getCurrentUser()
-    {
-        return this.Current_User;
-    }
-
-    public void setCurrentUser(string nText)
-    {
-        this.Current_User = nText;
-    }
 
     public int getCurrentMapIndex()
     {
@@ -50,11 +43,19 @@ public class Player_Controller : MonoBehaviour
         forward = Vector3.Normalize(forward);
         right = Quaternion.Euler(new Vector3(0, 90, 0)) * forward;
         initialPosition = GameObject.FindGameObjectWithTag("Player").transform.position;
+        
 
         animate = GetComponent<Animator>();
-        playerColor.color = Color.black;
-        setCurrentUser("No Data");
+
         setCurrenMapIndex(-1);
+
+        // switch scene
+        if (gs.getCurrentUser() == "") {
+            playerColor.color = Color.black;
+            Props.show("No Data");
+        } else {
+            Props.show(gs.getCurrentUser());
+        }
     }
 
     // Update is called once per frame
@@ -74,6 +75,7 @@ public class Player_Controller : MonoBehaviour
         fixPosition();
         changePersonality();
         changeMap();
+
         
     }
 
@@ -84,22 +86,29 @@ public class Player_Controller : MonoBehaviour
         }
     }
 
+
     void changePersonality()
     {
         if (Panel1 != null) {
             if (Input.GetKey(KeyCode.E) && !Input.GetKey(KeyCode.Q)) {
                 Panel1.SetActive(true);
-                string cmd = this.getCurrentUser();
+                string cmd = gs.getCurrentUser();
                 if (Input.GetKeyDown(KeyCode.Return) || Input.GetMouseButtonDown(0)) {
-                    if (cmd == "Plant") {
-                        playerColor.color = Color.green;
-                    } else if (cmd == "Engineer"){
-                        playerColor.color = Color.red;
-                    } else if (cmd == "No Data") {
+                    if (gs.getIsCharSelected() == 1) {
+                        Props.show(cmd);
+                        if (cmd == "Plant") {
+                            playerColor.color = Color.green;
+                        } else if (cmd == "Engineer"){
+                            playerColor.color = Color.red;
+                        }
+                    }
+                     else {
+                        Props.show("No Data");
+                        gs.setCurrentUser("No Data");
                         playerColor.color = Color.black;
                     }
                     Panel1.SetActive(false);
-                    this.setCurrentUser("No Data");
+                    gs.setIsCharSelected(0);
                 }
             } else {
                 Panel1.SetActive(false);
